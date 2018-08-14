@@ -867,14 +867,16 @@ for (i in uniqueSubj) {
 # By subject accuracy across sessions
 barchart(accuracy ~ session | subj, 
          data = subjAccDF[subjAccDF$category == "overall" &
-                            subjAccDF$session != "overall",], col = c(1,2,3,4))
+                            subjAccDF$session != "overall",], col = c(1,2,3,4),
+         scales=list(x=list(rot=45)))
 # Most speakers are peaking in prod training and dropping again in post-prod/re-test
 
 # Dental vs. retroflex by-subject trends over sessions 
 barchart(accuracy ~ session | subj,
          groups = factor(category), 
          data = subjAccDF[subjAccDF$category != "overall" &
-                            subjAccDF$session != "overall",], auto.key = TRUE)
+                            subjAccDF$session != "overall",], auto.key = TRUE,
+         scales=list(x=list(rot=45)))
 # With a few exceptions, accuracy in one category tracks accuracy in the other
 
 

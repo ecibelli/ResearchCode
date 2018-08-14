@@ -33,6 +33,29 @@ setwd(workingDir)
 ```
 
 
+### Lattice plot parameters 
+
+font.settings <- list( font = 1, cex =1.1) # , #fontfamily = "sansserif") 
+my.theme <- list( 
+  box.umbrella = list(col = c("black"), lwd =2), 
+  box.rectangle = list(col = c("black"), lwd = 2), #fill = c("blue", "red")),
+  box.dot = list(col = c("black"), pch = 16, cex=1), 
+  plot.symbol   = list(col = 1, pch= 1, cex = 1), #outlier size and color 
+  par.xlab.text = font.settings, 
+  par.ylab.text = font.settings,
+  par.sub.text = font.settings,
+  axis.text = font.settings,
+  #strip.shingle=list(col=c("black","white")), 
+  superpose.symbol=list(fill=c("gray","white")), # boxplots 
+  #superpose.fill=list(col=c("black","white")), 
+  superpose.polygon=list(col=c("gray","white")), # legend 
+  strip.background = list(col = c("white")),
+  axis.line = list(lwd = 2),
+  strip.border = list(lwd = 2),
+  layout.heights=list(strip=2)
+  #layout.heights = list(right.padding = -20)
+)	
+
 ### Multiplot function
 
 For plotting multiple ggplots **saved to a list** in a single image.
@@ -836,7 +859,8 @@ for (i in uniqueSubj) {
 # Most speakers are peaking in prod training and dropping again in post-prod/re-test
 barchart(accuracy ~ session | subj, 
          data = subjAccDF[subjAccDF$category == "overall" &
-                            subjAccDF$session != "overall",], col = c(1,2,3,4))
+                            subjAccDF$session != "overall",], col = c(1,2,3,4),
+         scales=list(x=list(rot=45)))
 
 
 # Dental vs. retroflex by-subject trends over sessions 
@@ -845,7 +869,8 @@ barchart(accuracy ~ session | subj,
 barchart(accuracy ~ session | subj,
          groups = factor(category), 
          data = subjAccDF[subjAccDF$category != "overall" &
-                            subjAccDF$session != "overall",], auto.key = TRUE)
+                            subjAccDF$session != "overall",], auto.key = TRUE,
+         scales=list(x=list(rot=45)))
 
 ```
 
